@@ -1,0 +1,68 @@
+site_name: Kano Lab Docs
+
+nav:
+  - HOME:
+      - 本サイトについて: index.md
+  - 画像処理:
+      - ip/index.md
+      - Java:
+          - ip/java/index.md
+          - 環境構築: ip/java/environment/index.md
+      - Python:
+          - ip/python/index.md
+          - 環境構築: ip/python/environment/index.md
+          - OpenCV: ip/python/opencv/index.md
+          - PyQt: ip/python/pyqt/index.md
+  - 機械学習: ml/index.md
+  - CT: ct/index.md
+
+theme:
+  language: ja
+  name: material
+  font:
+    text: Noto Sans Japanese
+  logo: img/chipmunk.png
+  favicon: img/chipmunk.png
+  features:
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.indexes
+    - navigation.expand
+    - navigation.sections
+    - navigation.path
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      primary: brown
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: black
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+markdown_extensions:
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      options:
+        custom_icons:
+          - overrides/.icons
+
+extra:
+  generator: false
+
+extra_css:
+  - css/extra.css
+
+copyright: 　&copy; 2023 Kano Lab Docs
