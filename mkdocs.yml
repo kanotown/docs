@@ -63,7 +63,7 @@ theme:
 
     # Palette toggle for dark mode
     - scheme: slate
-      primary: brown
+      primary: black
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
