@@ -3,17 +3,33 @@ site_name: Kano Lab Docs
 nav:
   - HOME:
       - 本サイトについて: index.md
-  - 画像処理:
-      - ip/index.md
-      - Java:
-          - ip/java/index.md
-          - 環境構築: ip/java/environment/index.md
-      - Python:
-          - ip/python/index.md
-          - 環境構築: ip/python/environment/index.md
-          - OpenCV: ip/python/opencv/index.md
-          - PyQt: ip/python/pyqt/index.md
-  - 機械学習: ml/index.md
+  - Java:
+      - java/index.md
+      - 環境構築: java/introduction/environment.md
+      - Java 入門: java/introduction/grammar.md
+      - GUI 開発:
+          - java/gui/index.md
+          - NetBeans 基礎: java/null.md
+      - 画像処理:
+          - java/ip/index.md
+          - 画像データの入出力: java/ip/imageio.md
+          - 画像処理の基礎: java/ip/basic.md
+      - OpenCV:
+          - java/opencv/index.md
+          - インストール: java/opencv/introduction.md
+          - 画像の表示: java/opencv/imread.md
+          - 色空間: java/opencv/color.md
+          - 二値化: java/opencv/threshold.md
+          - フィルタ処理: java/opencv/filter.md
+          - モルフォロジー演算: java/opencv/morphology.md
+          - セグメンテーション: java/opencv/segmentation.md
+          - 応用: java/opencv/advanced.md
+
+  - Python:
+      - python/index.md
+      - 環境構築: python/environment.md
+      - OpenCV: python/opencv/index.md
+      - PyQt: python/pyqt/index.md
   - CT: ct/index.md
 
 theme:
@@ -31,6 +47,7 @@ theme:
     - navigation.sections
     - navigation.path
     - navigation.top
+    - navigation.footer
     - search.suggest
     - search.highlight
     - search.share
@@ -38,7 +55,8 @@ theme:
   palette:
     # Palette toggle for light mode
     - scheme: default
-      primary: brown
+      primary: teal
+      accent: teal
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
@@ -58,11 +76,23 @@ markdown_extensions:
       options:
         custom_icons:
           - overrides/.icons
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
 
 extra:
   generator: false
 
 extra_css:
   - css/extra.css
+
+plugins:
+  - git-revision-date-localized:
+      enable_creation_date: true
+  - search
 
 copyright: 　&copy; 2023 Kano Lab Docs
