@@ -33,7 +33,7 @@ nav:
   - CT: ct/index.md
 
 theme:
-  language: ja
+  # language: ja
   name: material
   font:
     text: Noto Sans Japanese
