@@ -13,3 +13,8 @@
 
 - Kano's page  
   [https://kano.ac/](https://kano.ac/)
+
+- Archives of Learning English and Japanese  
+  [https://blog.kano.ac/archive/](https://blog.kano.ac/archive/)
+
+<br>
