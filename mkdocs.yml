@@ -19,6 +19,7 @@ nav:
           - インストール: java/opencv/introduction.md
           - 画像の表示: java/opencv/imread.md
           - 色空間: java/opencv/color.md
+          - 画素値の操作: java/opencv/pixel.md
           - 二値化: java/opencv/threshold.md
           - フィルタ処理: java/opencv/filter.md
           - モルフォロジー演算: java/opencv/morphology.md
@@ -83,6 +84,8 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
+  - admonition
+  - pymdownx.details
 
 extra:
   generator: false

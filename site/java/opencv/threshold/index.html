@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../color/">
+        <link rel="prev" href="../pixel/">
       
       
         <link rel="next" href="../filter/">
@@ -717,6 +717,8 @@
       
         
       
+        
+      
     
     
     
@@ -827,6 +829,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../pixel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    画素値の操作
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -839,6 +862,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    二値化
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -848,6 +882,61 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      二値化処理のフラグ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      大局的しきい値による二値化
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      大津の二値化
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      適応的しきい値処理
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1131,6 +1220,50 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      二値化処理のフラグ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      大局的しきい値による二値化
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      大津の二値化
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      適応的しきい値処理
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1145,9 +1278,79 @@
 
 
 <h1 id="_1">二値化</h1>
-<p>画像のセグメンテーションの最も単純な方法として、二値化（"binarization" or "thresholding"）があります。 二値化を適用するには、グレースケール画像に対して <code>threshold</code> メソッドを用います。第 1 引数にはグレースケール画像、第 2 引数にはしきい値、第 3 引数には画素の最大値、第 4 引数には処理のフラグを指定します。一般的な二値化処理のフラグは THRESH_BINARY であり、例えば以下のように書くことができます。</p>
-<p>（準備中）</p>
-<p>二値化の中でもよく利用されるアルゴリズムに、ヒストグラムの分離度を最大化するように閾値を自動決定する <strong>大津の二値化</strong> や、特定領域ごとに適応的に閾値を決定する <strong>適応的閾値処理 (Adaptive Thresholding)</strong> があります。詳細や実装方法は、公式ドキュメント（<a href="https://docs.opencv.org/4.x/d7/d4d/tutorial_py_thresholding.html">Image Thresholding</a>） で確認することができます。それぞれの二値化手法の利点や欠点について、実装しながら考えてみてください。</p>
+<p>画像のセグメンテーションの最も単純な方法として、二値化（binarization）またはしきい値処理（thresholding）があります。二値化とは、画素値がしきい値よりも大きければ白、そうでなければ黒を割り当てるといったように、ルールに従って画像を二値に変更する操作のことです。OpenCV で二値化を適用するには、グレースケール画像に対して <code>threshold</code> メソッドを用います。第 1 引数にはグレースケール画像、第 2 引数にはしきい値、第 3 引数には画素の最大値、第 4 引数には処理のフラグを指定します。</p>
+<h2 id="_2">二値化処理のフラグ</h2>
+<p>代表的な二値化処理のフラグには、以下のようなものがあります。</p>
+<ul>
+<li><code>Imgproc.THRESH_BINARY</code></li>
+<li><code>Imgproc.THRESH_BINARY_INV</code></li>
+<li><code>Imgproc.THRESH_TRUNC</code></li>
+<li><code>Imgproc.THRESH_TOZERO</code></li>
+<li><code>Imgproc.THRESH_TOZERO_INV</code></li>
+<li><code>Imgproc.THRESH_OTSU</code></li>
+</ul>
+<p>詳細については、公式ドキュメント（<a href="https://docs.opencv.org/4.x/d7/d4d/tutorial_py_thresholding.html">Image Thresholding</a>） を参照してください。</p>
+<h2 id="_3">大局的しきい値による二値化</h2>
+<p>最も単純な二値化の考え方として、大局的な一つのしきい値を事前に設定し、その値よりも大きければ白、小さければ黒にするというものがあります。この方法は <strong>大局的しきい値処理</strong> とも呼ばれ、OpenCV においては <code>Imgproc.THRESH_BINARY</code> フラグで表現されます。以下は、大局的しきい値処理を行うサンプルコードです。</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// ライブラリの読み込み</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">System</span><span class="p">.</span><span class="na">loadLibrary</span><span class="p">(</span><span class="n">Core</span><span class="p">.</span><span class="na">NATIVE_LIBRARY_NAME</span><span class="p">);</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1">// 画像の読み込み</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">Mat</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Imgcodecs</span><span class="p">.</span><span class="na">imread</span><span class="p">(</span><span class="s">&quot;KanoHead.png&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Imgcodecs</span><span class="p">.</span><span class="na">IMREAD_GRAYSCALE</span><span class="p">);</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1">// 大局的しきい値処理</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">Mat</span><span class="w"> </span><span class="n">binaryImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Mat</span><span class="p">();</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">Imgproc</span><span class="p">.</span><span class="na">threshold</span><span class="p">(</span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">binaryImage</span><span class="p">,</span><span class="w"> </span><span class="mi">128</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="n">Imgproc</span><span class="p">.</span><span class="na">THRESH_BINARY</span><span class="p">);</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1">// 画像の表示</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">HighGui</span><span class="p">.</span><span class="na">imshow</span><span class="p">(</span><span class="s">&quot;大局的しきい値処理（thresh = 128）&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">binaryImage</span><span class="p">);</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">HighGui</span><span class="p">.</span><span class="na">waitKey</span><span class="p">();</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">System</span><span class="p">.</span><span class="na">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></code></pre></div>
+<p><img alt="Thresholding 1" src="../img/thresh1.png" /></p>
+<p><code>threshold</code> の第 3 引数の値（しきい値）を変更することで、結果の変化を確認することができます。</p>
+<h2 id="_4">大津の二値化</h2>
+<p>二値化において、しきい値を自動的に決定する代表的な手法として、<strong>大津の二値化</strong> があります。大津の二値化では、ヒストグラムの分離度を最大化するようにしきい値を自動決定します。理論の詳細については公式ドキュメントを参照するようにしてください。大津の二値化は、<code>threshold</code> メソッドの第 5 引数で <code>Imgproc.THRESH_OTSU</code> フラグを指定することで利用できます。このとき、第 3 引数のしきい値には数値を入れることができますが、大津の二値化ではしきい値が自動決定されるため入力した値は無視されます。また、自動決定されたしきい値は、<code>threshold</code> の返り値で確認することができます。</p>
+<p>以下は、大津の二値化の実装例です。</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// ライブラリの読み込み</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">System</span><span class="p">.</span><span class="na">loadLibrary</span><span class="p">(</span><span class="n">Core</span><span class="p">.</span><span class="na">NATIVE_LIBRARY_NAME</span><span class="p">);</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1">// 画像の読み込み</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">Mat</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Imgcodecs</span><span class="p">.</span><span class="na">imread</span><span class="p">(</span><span class="s">&quot;KanoHead.png&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Imgcodecs</span><span class="p">.</span><span class="na">IMREAD_GRAYSCALE</span><span class="p">);</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1">// 大局的しきい値処理</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">Mat</span><span class="w"> </span><span class="n">binaryImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Mat</span><span class="p">();</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="kt">double</span><span class="w"> </span><span class="n">thresh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Imgproc</span><span class="p">.</span><span class="na">threshold</span><span class="p">(</span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">binaryImage</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="n">Imgproc</span><span class="p">.</span><span class="na">THRESH_OTSU</span><span class="p">);</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="c1">// 画像の表示</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">HighGui</span><span class="p">.</span><span class="na">imshow</span><span class="p">(</span><span class="s">&quot;大津の二値化（thresh = &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">thresh</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;）&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">binaryImage</span><span class="p">);</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">HighGui</span><span class="p">.</span><span class="na">waitKey</span><span class="p">();</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="n">System</span><span class="p">.</span><span class="na">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></code></pre></div>
+<p><img alt="Thresholding 2" src="../img/thresh2.png" /></p>
+<p>しきい値として <code>92</code> という値が決定されていることが確認できます。</p>
+<h2 id="_5">適応的しきい値処理</h2>
+<p>一つのしきい値ではうまく領域分割ができない場合は、特定領域ごとに適応的にしきい値を決定する <strong>適応的閾値処理 (Adaptive Thresholding)</strong> が有効である可能性があります。適応的しきい値処理は、<code>adaptiveThreshold</code> メソッドによって行うことができます。以下は、実際のコード例です。</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// ライブラリの読み込み</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">System</span><span class="p">.</span><span class="na">loadLibrary</span><span class="p">(</span><span class="n">Core</span><span class="p">.</span><span class="na">NATIVE_LIBRARY_NAME</span><span class="p">);</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1">// 画像の読み込み</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">Mat</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Imgcodecs</span><span class="p">.</span><span class="na">imread</span><span class="p">(</span><span class="s">&quot;KanoHead.png&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Imgcodecs</span><span class="p">.</span><span class="na">IMREAD_GRAYSCALE</span><span class="p">);</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1">// 適応的しきい値処理</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="n">Mat</span><span class="w"> </span><span class="n">binaryImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Mat</span><span class="p">();</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="kt">int</span><span class="w"> </span><span class="n">blockSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="p">;</span><span class="w"> </span><span class="c1">// ブロックサイズ（奇数）</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="kt">int</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="c1">// 定数（平均または中央値から引く値）</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="n">Imgproc</span><span class="p">.</span><span class="na">adaptiveThreshold</span><span class="p">(</span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">binaryImage</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="n">Imgproc</span><span class="p">.</span><span class="na">ADAPTIVE_THRESH_GAUSSIAN_C</span><span class="p">,</span><span class="w"> </span><span class="n">Imgproc</span><span class="p">.</span><span class="na">THRESH_BINARY</span><span class="p">,</span><span class="w"> </span><span class="n">blockSize</span><span class="p">,</span><span class="w"> </span><span class="n">C</span><span class="p">);</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="c1">// 画像の表示</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="n">HighGui</span><span class="p">.</span><span class="na">imshow</span><span class="p">(</span><span class="s">&quot;適応的しきい値処理&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">binaryImage</span><span class="p">);</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="n">HighGui</span><span class="p">.</span><span class="na">waitKey</span><span class="p">();</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="n">System</span><span class="p">.</span><span class="na">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></code></pre></div>
+<p><img alt="Threshold 3" src="../img/thresh3.png" /></p>
+<p><br></p>
+<p>このセクションで触れた二値化処理の詳細については、公式ドキュメント（<a href="https://docs.opencv.org/4.x/d7/d4d/tutorial_py_thresholding.html">Image Thresholding</a>） で確認することができます。各手法の利点や欠点について、考えながら実装してみてください。</p>
 <p><br></p>
 
 
@@ -1216,7 +1419,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../color/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 色空間">
+          <a href="../pixel/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 画素値の操作">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -1226,7 +1429,7 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                色空間
+                画素値の操作
               </div>
             </div>
           </a>

@@ -12,7 +12,7 @@
         <link rel="prev" href="../imread/">
       
       
-        <link rel="next" href="../threshold/">
+        <link rel="next" href="../pixel/">
       
       
       <link rel="icon" href="../../../img/chipmunk.png">
@@ -717,6 +717,8 @@
       
         
       
+        
+      
     
     
     
@@ -876,6 +878,27 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pixel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    画素値の操作
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1220,22 +1243,26 @@
 
 <h1 id="_1">色空間の変換</h1>
 <p>画像処理では、画像のピクセル表現をある色空間から別の色空間に変換することがよく行われます。
-典型的な変換には、RGB からグレースケール、HSV または YCrCb への変換があります。</p>
+典型的な変換には、RGB からグレースケール、HSV または YCrCb への変換があります。OpenCV ではデフォルトの色空間が BGR である点に注意が必要です。</p>
 <h2 id="_2">グレースケール変換</h2>
-<p>以下のコードは、カラー（RGB）画像をグレースケール画像に変換する例です。</p>
+<p>以下のコードは、カラー（BGR）画像をグレースケール画像に変換する例です。</p>
 <div class="language-java highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// 元のカラー画像を読み込む</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">Mat</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Imgcodecs</span><span class="p">.</span><span class="na">imread</span><span class="p">(</span><span class="s">&quot;input.png&quot;</span><span class="p">);</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1">// グレースケール画像を格納する変数を作成</span>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">Mat</span><span class="w"> </span><span class="n">gray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Mat</span><span class="p">();</span>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1">// RGB からグレースケールへの変換</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">Imgproc</span><span class="p">.</span><span class="na">cvtColor</span><span class="p">(</span><span class="n">color</span><span class="p">,</span><span class="w"> </span><span class="n">gray</span><span class="p">,</span><span class="w"> </span><span class="n">Imgproc</span><span class="p">.</span><span class="na">COLOR_RGB2GRAY</span><span class="p">);</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1">// BGR からグレースケールへの変換</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">Imgproc</span><span class="p">.</span><span class="na">cvtColor</span><span class="p">(</span><span class="n">color</span><span class="p">,</span><span class="w"> </span><span class="n">gray</span><span class="p">,</span><span class="w"> </span><span class="n">Imgproc</span><span class="p">.</span><span class="na">COLOR_BGR2GRAY</span><span class="p">);</span>
 </span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
 </span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1">// 画像を保存</span>
 </span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">Imgcodecs</span><span class="p">.</span><span class="na">imwrite</span><span class="p">(</span><span class="s">&quot;grayscale.png&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">gray</span><span class="p">);</span>
 </span></code></pre></div>
 <p><code>Improc.cvtColor</code> メソッドによって、さまざまな色空間の変換を実行することができます。</p>
+<p>また、はじめから特定の色空間で画像を読み込ませたい場合は、<code>imread</code> の第 2 引数に色空間のフラグを指定します。例えば、グレースケール画像として読み込ませる場合は、以下のように書きます。</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Mat</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Imgcodecs</span><span class="p">.</span><span class="na">imread</span><span class="p">(</span><span class="s">&quot;KanoHead.png&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Imgcodecs</span><span class="p">.</span><span class="na">IMREAD_GRAYSCALE</span><span class="p">);</span>
+</span></code></pre></div>
+<p>当研究室では主に CT データを扱うため、基本的にはこの書き方を行うことになります。</p>
 <h2 id="_3">色空間のリスト</h2>
 <p><a href="https://docs.opencv.org/4.8.0/d8/d01/group__imgproc__color__conversions.html#ga4e0972be5de079fed4e3a10e24ef5ef0">Color Space Conversions</a> では、OpenCV で変換可能な色空間のリストを確認できます。
 さらに <a href="https://docs.opencv.org/4.8.0/de/d25/imgproc_color_conversions.html">Color conversions</a> では、代表的な色変換の理論を確認することができます。必要に応じて参照するようにしてください。</p>
@@ -1324,13 +1351,13 @@
         
         
           
-          <a href="../threshold/" class="md-footer__link md-footer__link--next" aria-label="Next: 二値化">
+          <a href="../pixel/" class="md-footer__link md-footer__link--next" aria-label="Next: 画素値の操作">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                二値化
+                画素値の操作
               </div>
             </div>
             <div class="md-footer__button md-icon">

@@ -14,11 +14,11 @@ import org.opencv.imgcodecs.Imgcodecs;
 
 これにより、画像データを表す `Mat` クラスや画像の読み書きを行う `Imgcodecs` クラスなど、必要な OpenCV の機能にアクセスできるようになります。
 
-## OpenCV を使った画像の読み込み
+## OpenCV による画像の読み込み
 
 Java で OpenCV を使って画像を読み込む場合、`Imgcodecs` クラスの `imread` メソッドを使用します。これは指定されたパスにある画像ファイルを読み込み、`Mat` オブジェクトとして返す機能を持っています。
 
-以下に読み込みの基本的なコードを示します。
+以下に、読み込みの基本的なコードを示します。
 
 ```java
 System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
@@ -29,9 +29,48 @@ Mat image = Imgcodecs.imread(imageFilePath);
 `System.loadLibrary(Core.NATIVE_LIBRARY_NAME);` によって、OpenCV のネイティブライブラリが読み込まれます。
 これはプログラムの開始時に一度だけ実行すれば OK です。
 
-## OpenCV を使った画像の表示
+### 頭部 CT 画像（フリー素材）
 
-OpenCV 単体でも画像の表示は可能ですが、Swing などの Java の GUI フレームワークを使用するのが一般的です。
+以下では私の頭部 CT 画像（KanoHead.png、フリー素材）を使っていくことにします。
+
+![Kano Head](img/KanoHead.png)
+
+## OpenCV による画像の表示
+
+OpenCV 単体でも、[`HighGui`](https://docs.opencv.org/4.x/javadoc/org/opencv/highgui/HighGui.html) クラスを用いることで、簡易的に画像の表示を行うことができます。
+本サイトのサンプルコードでは、記述をシンプルにするために基本的には [`HighGui`](https://docs.opencv.org/4.x/javadoc/org/opencv/highgui/HighGui.html) クラスを用いることにしますが、高度な GUI アプリケーションを作成する場合は、Swing などの GUI フレームワークを併用するようにしてください。
+
+[`HighGui`](https://docs.opencv.org/4.x/javadoc/org/opencv/highgui/HighGui.html) クラスを用いた画像の表示は、[`imshow`](<https://docs.opencv.org/4.x/javadoc/org/opencv/highgui/HighGui.html#imshow(java.lang.String,org.opencv.core.Mat)>) メソッドで行い、直後に [`waitKey`](<https://docs.opencv.org/4.x/javadoc/org/opencv/highgui/HighGui.html#waitKey()>) メソッドを置くことで、ウィンドウを表示させることができます。以下は実際のコード例です。
+
+```java
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+import org.opencv.highgui.HighGui;
+import org.opencv.imgcodecs.Imgcodecs;
+
+public class Main {
+    public static void main(String[] args) {
+        // ライブラリの読み込み
+        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+
+        // 画像の読み込み
+        Mat image = Imgcodecs.imread("KanoHead.png");
+
+        // 画像の表示
+        HighGui.imshow("HighGui による画像の表示", image);
+        HighGui.waitKey();
+        System.exit(0);
+    }
+}
+```
+
+以下のようなウィンドウが表示されたら成功です。
+
+![HighGui](img/HighGui.png)
+
+## Swing による画像の表示
+
+実際の Java アプリケーション開発においては、Swing などの GUI フレームワークを使用するのが一般的です。
 そのため、画像を表示するためのウィンドウを作成し、そこに画像を描画する必要があります。
 
 以下では、NetBeans の GUI デザイナを使用している想定で話を進めていきます。
@@ -40,15 +79,9 @@ OpenCV 単体でも画像の表示は可能ですが、Swing などの Java の 
 
 ![lblDraw](img/lblDraw.png)
 
-### 頭部 CT 画像（フリー素材）
-
-表示する画像は何でも構いませんが、ここでは以下の私の頭部 CT 画像（KanoHead.png、フリー素材）を使っていくことにします。
-
-![Kano Head](img/KanoHead.png)
-
 ### JLabel への画像表示
 
-NetBeans で `JFrame` フォームを作成すると、コンストラクタの中に GUI の描画を行う `initComponents` メソッドが生成されます。この後ろに、OpenCV の簡単なコードを書いていきましょう。
+NetBeans で `JFrame` フォームを作成すると、コンストラクタの中に GUI の描画を行う `initComponents` メソッドが生成されます。この後ろに、OpenCV の簡単なコードを書いてみましょう。
 
 ```java
 initComponents();   // 最初から含まれているコード
@@ -60,32 +93,32 @@ System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 Mat image = Imgcodecs.imread("KanoHead.png");
 
 // 画像の表示
-lblDraw.setIcon(new ImageIcon(matToBufferedImage(image)));
+lblDraw.setIcon(new ImageIcon(HighGui.toBufferedImage(image)));
 ```
 
-ここで `matToBufferedImage` は Mat を BufferedImage に変換する独自メソッドで、中身は以下のようにしています。
-このコードを `FrameMain` のフィールドに貼り付け、利用できる状態にしましょう。
+ここで `toBufferedImage` は `Mat` を `BufferedImage` に変換するメソッドで、中身は以下のようになっています。
 
 ```java
-public static BufferedImage matToBufferedImage(Mat mat) {
-    // Mat のチャンネル数に応じて BufferedImage のタイプを設定
+public static Image toBufferedImage(Mat m) {
     int type = BufferedImage.TYPE_BYTE_GRAY;
-    if (mat.channels() > 1) {
+
+    if (m.channels() > 1) {
         type = BufferedImage.TYPE_3BYTE_BGR;
     }
 
-    // Mat を BufferedImage に変換
-    byte[] data = new byte[mat.width() * mat.height() * (int) mat.elemSize()];
-    mat.get(0, 0, data);
-    BufferedImage bufImage = new BufferedImage(mat.width(), mat.height(), type);
-    final byte[] targetPixels = ((DataBufferByte) bufImage.getRaster().getDataBuffer()).getData();
-    System.arraycopy(data, 0, targetPixels, 0, data.length);
+    int bufferSize = m.channels() * m.cols() * m.rows();
+    byte[] b = new byte[bufferSize];
+    m.get(0, 0, b); // get all the pixels
+    BufferedImage image = new BufferedImage(m.cols(), m.rows(), type);
 
-    return bufImage;
+    final byte[] targetPixels = ((DataBufferByte) image.getRaster().getDataBuffer()).getData();
+    System.arraycopy(b, 0, targetPixels, 0, b.length);
+
+    return image;
 }
 ```
 
-ここまでのコードを記述すると、シンボルが見つからないというエラーが幾つも出ているかもしれません。
+ここまでのコードを記述すると、シンボルが見つからないというエラーが出ているかもしれません。
 このエラーを解消するためには、コードエディタの好きな場所で右クリックをし、[Fix Imports]（インポートの修正）を行ってください。
 
 ![Fix Imports](img/FixImports.png)
@@ -98,6 +131,7 @@ import java.awt.image.DataBufferByte;
 import javax.swing.ImageIcon;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
+import org.opencv.highgui.HighGui;
 import org.opencv.imgcodecs.Imgcodecs;
 ```
 

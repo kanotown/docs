@@ -20,6 +20,8 @@ Java にバインディングされた OpenCV は、Java Native Interface（JNI�
 
 1. [色空間 :material-arrow-right:](./color.md)
 
+1. [画素値の操作 :material-arrow-right:](./pixel.md)
+
 1. [二値化 :material-arrow-right:](./threshold.md)
 
 1. [フィルタ処理 :material-arrow-right:](./filter.md)
@@ -28,4 +30,4 @@ Java にバインディングされた OpenCV は、Java Native Interface（JNI�
 
 1. [セグメンテーション :material-arrow-right:](./segmentation.md)
 
-1. [応用 :material-arrow-right:](./adcanced.md)
+1. [応用 :material-arrow-right:](./advanced.md)

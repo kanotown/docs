@@ -73,6 +73,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#region-growing" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -712,6 +717,8 @@
       
         
       
+        
+      
     
     
     
@@ -825,6 +832,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../pixel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    画素値の操作
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../threshold/" class="md-nav__link">
         
   
@@ -895,6 +923,17 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    セグメンテーション
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -904,6 +943,47 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#region-growing" class="md-nav__link">
+    <span class="md-ellipsis">
+      領域拡張法（Region Growing）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="領域拡張法（Region Growing）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      領域拡張法のステップ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1122,6 +1202,38 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#region-growing" class="md-nav__link">
+    <span class="md-ellipsis">
+      領域拡張法（Region Growing）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="領域拡張法（Region Growing）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      領域拡張法のステップ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1137,7 +1249,20 @@
 
   <h1>セグメンテーション</h1>
 
-<p>（準備中）</p>
+<p>このセクションでは、画像から特定の領域を抽出するセグメンテーション技術について学びます。
+領域ベースのセグメンテーションは、画像中の連続するピクセルグループを一つのセグメントとして識別する手法です。
+ここでは、特に「領域拡張法」と「分割統合法」という二つの領域ベースのアプローチに焦点を当てます。</p>
+<h2 id="region-growing">領域拡張法（Region Growing）</h2>
+<p>領域拡張法は、類似の属性を持つピクセルを基準にして新しいピクセルを領域に追加していくことでセグメントを成長させていきます。
+最も基本的な属性はピクセルのグレースケール値ですが、カラー情報やテクスチャ情報を利用することも可能です。</p>
+<h3 id="_1">領域拡張法のステップ</h3>
+<ol>
+<li>シードポイントを選択する: セグメント成長の開始点となるピクセルを選びます。</li>
+<li>近隣ピクセルの条件を定義する: シードポイントに類似した属性を持つピクセルを定義します。</li>
+<li>領域の成長: 条件に合った近隣ピクセルを現在の領域に追加していきます。</li>
+<li>成長プロセスの反復: 新たに追加されたピクセルの近傍も領域に合うかを評価し、成長を続けます。</li>
+<li>終了条件: 成長が止まるまでこれらのステップを繰り返します。</li>
+</ol>
 <p><br></p>
 
 

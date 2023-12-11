@@ -717,6 +717,8 @@
       
         
       
+        
+      
     
     
     
@@ -845,20 +847,11 @@
         <li class="md-nav__item">
   <a href="#opencv_2" class="md-nav__link">
     <span class="md-ellipsis">
-      OpenCV を使った画像の読み込み
+      OpenCV による画像の読み込み
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#opencv_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      OpenCV を使った画像の表示
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="OpenCV を使った画像の表示">
+    <nav class="md-nav" aria-label="OpenCV による画像の読み込み">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -869,6 +862,30 @@
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opencv_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      OpenCV による画像の表示
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#swing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Swing による画像の表示
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Swing による画像の表示">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#jlabel" class="md-nav__link">
@@ -905,6 +922,27 @@
   
   <span class="md-ellipsis">
     色空間
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pixel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    画素値の操作
   </span>
   
 
@@ -1230,20 +1268,11 @@
         <li class="md-nav__item">
   <a href="#opencv_2" class="md-nav__link">
     <span class="md-ellipsis">
-      OpenCV を使った画像の読み込み
+      OpenCV による画像の読み込み
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#opencv_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      OpenCV を使った画像の表示
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="OpenCV を使った画像の表示">
+    <nav class="md-nav" aria-label="OpenCV による画像の読み込み">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1254,6 +1283,30 @@
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opencv_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      OpenCV による画像の表示
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#swing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Swing による画像の表示
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Swing による画像の表示">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#jlabel" class="md-nav__link">
@@ -1293,67 +1346,94 @@
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">org.opencv.imgcodecs.Imgcodecs</span><span class="p">;</span>
 </span></code></pre></div>
 <p>これにより、画像データを表す <code>Mat</code> クラスや画像の読み書きを行う <code>Imgcodecs</code> クラスなど、必要な OpenCV の機能にアクセスできるようになります。</p>
-<h2 id="opencv_2">OpenCV を使った画像の読み込み</h2>
+<h2 id="opencv_2">OpenCV による画像の読み込み</h2>
 <p>Java で OpenCV を使って画像を読み込む場合、<code>Imgcodecs</code> クラスの <code>imread</code> メソッドを使用します。これは指定されたパスにある画像ファイルを読み込み、<code>Mat</code> オブジェクトとして返す機能を持っています。</p>
-<p>以下に読み込みの基本的なコードを示します。</p>
+<p>以下に、読み込みの基本的なコードを示します。</p>
 <div class="language-java highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">System</span><span class="p">.</span><span class="na">loadLibrary</span><span class="p">(</span><span class="n">Core</span><span class="p">.</span><span class="na">NATIVE_LIBRARY_NAME</span><span class="p">);</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">String</span><span class="w"> </span><span class="n">imageFilePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;./image.png&quot;</span><span class="p">;</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">Mat</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Imgcodecs</span><span class="p">.</span><span class="na">imread</span><span class="p">(</span><span class="n">imageFilePath</span><span class="p">);</span>
 </span></code></pre></div>
 <p><code>System.loadLibrary(Core.NATIVE_LIBRARY_NAME);</code> によって、OpenCV のネイティブライブラリが読み込まれます。
 これはプログラムの開始時に一度だけ実行すれば OK です。</p>
-<h2 id="opencv_3">OpenCV を使った画像の表示</h2>
-<p>OpenCV 単体でも画像の表示は可能ですが、Swing などの Java の GUI フレームワークを使用するのが一般的です。
+<h3 id="ct">頭部 CT 画像（フリー素材）</h3>
+<p>以下では私の頭部 CT 画像（KanoHead.png、フリー素材）を使っていくことにします。</p>
+<p><img alt="Kano Head" src="../img/KanoHead.png" /></p>
+<h2 id="opencv_3">OpenCV による画像の表示</h2>
+<p>OpenCV 単体でも、<a href="https://docs.opencv.org/4.x/javadoc/org/opencv/highgui/HighGui.html"><code>HighGui</code></a> クラスを用いることで、簡易的に画像の表示を行うことができます。
+本サイトのサンプルコードでは、記述をシンプルにするために基本的には <a href="https://docs.opencv.org/4.x/javadoc/org/opencv/highgui/HighGui.html"><code>HighGui</code></a> クラスを用いることにしますが、高度な GUI アプリケーションを作成する場合は、Swing などの GUI フレームワークを併用するようにしてください。</p>
+<p><a href="https://docs.opencv.org/4.x/javadoc/org/opencv/highgui/HighGui.html"><code>HighGui</code></a> クラスを用いた画像の表示は、<a href="https://docs.opencv.org/4.x/javadoc/org/opencv/highgui/HighGui.html#imshow(java.lang.String,org.opencv.core.Mat)"><code>imshow</code></a> メソッドで行い、直後に <a href="https://docs.opencv.org/4.x/javadoc/org/opencv/highgui/HighGui.html#waitKey()"><code>waitKey</code></a> メソッドを置くことで、ウィンドウを表示させることができます。以下は実際のコード例です。</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">org.opencv.core.Core</span><span class="p">;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">org.opencv.core.Mat</span><span class="p">;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">org.opencv.highgui.HighGui</span><span class="p">;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">org.opencv.imgcodecs.Imgcodecs</span><span class="p">;</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Main</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">        </span><span class="c1">// ライブラリの読み込み</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">loadLibrary</span><span class="p">(</span><span class="n">Core</span><span class="p">.</span><span class="na">NATIVE_LIBRARY_NAME</span><span class="p">);</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">        </span><span class="c1">// 画像の読み込み</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">        </span><span class="n">Mat</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Imgcodecs</span><span class="p">.</span><span class="na">imread</span><span class="p">(</span><span class="s">&quot;KanoHead.png&quot;</span><span class="p">);</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">        </span><span class="c1">// 画像の表示</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">        </span><span class="n">HighGui</span><span class="p">.</span><span class="na">imshow</span><span class="p">(</span><span class="s">&quot;HighGui による画像の表示&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">image</span><span class="p">);</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">        </span><span class="n">HighGui</span><span class="p">.</span><span class="na">waitKey</span><span class="p">();</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>以下のようなウィンドウが表示されたら成功です。</p>
+<p><img alt="HighGui" src="../img/HighGui.png" /></p>
+<h2 id="swing">Swing による画像の表示</h2>
+<p>実際の Java アプリケーション開発においては、Swing などの GUI フレームワークを使用するのが一般的です。
 そのため、画像を表示するためのウィンドウを作成し、そこに画像を描画する必要があります。</p>
 <p>以下では、NetBeans の GUI デザイナを使用している想定で話を進めていきます。
 いつものように、<code>JFrame</code> フォームを作成し、そこに <code>JLabel</code> コンポーネントを貼り付けましょう。
 <code>JFrame</code> の名前は <code>FrameMain</code>、<code>JLabel</code> の名前は <code>lblDraw</code>、サイズは <code>512 x 512</code> としています。</p>
 <p><img alt="lblDraw" src="../img/lblDraw.png" /></p>
-<h3 id="ct">頭部 CT 画像（フリー素材）</h3>
-<p>表示する画像は何でも構いませんが、ここでは以下の私の頭部 CT 画像（KanoHead.png、フリー素材）を使っていくことにします。</p>
-<p><img alt="Kano Head" src="../img/KanoHead.png" /></p>
 <h3 id="jlabel">JLabel への画像表示</h3>
-<p>NetBeans で <code>JFrame</code> フォームを作成すると、コンストラクタの中に GUI の描画を行う <code>initComponents</code> メソッドが生成されます。この後ろに、OpenCV の簡単なコードを書いていきましょう。</p>
-<div class="language-java highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">initComponents</span><span class="p">();</span><span class="w">   </span><span class="c1">// 最初から含まれているコード</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1">// ライブラリの読み込み</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">System</span><span class="p">.</span><span class="na">loadLibrary</span><span class="p">(</span><span class="n">Core</span><span class="p">.</span><span class="na">NATIVE_LIBRARY_NAME</span><span class="p">);</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1">// 画像の読み込み</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">Mat</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Imgcodecs</span><span class="p">.</span><span class="na">imread</span><span class="p">(</span><span class="s">&quot;KanoHead.png&quot;</span><span class="p">);</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="c1">// 画像の表示</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="n">lblDraw</span><span class="p">.</span><span class="na">setIcon</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ImageIcon</span><span class="p">(</span><span class="n">matToBufferedImage</span><span class="p">(</span><span class="n">image</span><span class="p">)));</span>
+<p>NetBeans で <code>JFrame</code> フォームを作成すると、コンストラクタの中に GUI の描画を行う <code>initComponents</code> メソッドが生成されます。この後ろに、OpenCV の簡単なコードを書いてみましょう。</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">initComponents</span><span class="p">();</span><span class="w">   </span><span class="c1">// 最初から含まれているコード</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1">// ライブラリの読み込み</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">System</span><span class="p">.</span><span class="na">loadLibrary</span><span class="p">(</span><span class="n">Core</span><span class="p">.</span><span class="na">NATIVE_LIBRARY_NAME</span><span class="p">);</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1">// 画像の読み込み</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">Mat</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Imgcodecs</span><span class="p">.</span><span class="na">imread</span><span class="p">(</span><span class="s">&quot;KanoHead.png&quot;</span><span class="p">);</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1">// 画像の表示</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="n">lblDraw</span><span class="p">.</span><span class="na">setIcon</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ImageIcon</span><span class="p">(</span><span class="n">HighGui</span><span class="p">.</span><span class="na">toBufferedImage</span><span class="p">(</span><span class="n">image</span><span class="p">)));</span>
 </span></code></pre></div>
-<p>ここで <code>matToBufferedImage</code> は Mat を BufferedImage に変換する独自メソッドで、中身は以下のようにしています。
-このコードを <code>FrameMain</code> のフィールドに貼り付け、利用できる状態にしましょう。</p>
-<div class="language-java highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">BufferedImage</span><span class="w"> </span><span class="nf">matToBufferedImage</span><span class="p">(</span><span class="n">Mat</span><span class="w"> </span><span class="n">mat</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="c1">// Mat のチャンネル数に応じて BufferedImage のタイプを設定</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BufferedImage</span><span class="p">.</span><span class="na">TYPE_BYTE_GRAY</span><span class="p">;</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mat</span><span class="p">.</span><span class="na">channels</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BufferedImage</span><span class="p">.</span><span class="na">TYPE_3BYTE_BGR</span><span class="p">;</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="c1">// Mat を BufferedImage に変換</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">byte</span><span class="o">[</span><span class="n">mat</span><span class="p">.</span><span class="na">width</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mat</span><span class="p">.</span><span class="na">height</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">mat</span><span class="p">.</span><span class="na">elemSize</span><span class="p">()</span><span class="o">]</span><span class="p">;</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="n">mat</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">);</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="n">BufferedImage</span><span class="w"> </span><span class="n">bufImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BufferedImage</span><span class="p">(</span><span class="n">mat</span><span class="p">.</span><span class="na">width</span><span class="p">(),</span><span class="w"> </span><span class="n">mat</span><span class="p">.</span><span class="na">height</span><span class="p">(),</span><span class="w"> </span><span class="n">type</span><span class="p">);</span>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">targetPixels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="n">DataBufferByte</span><span class="p">)</span><span class="w"> </span><span class="n">bufImage</span><span class="p">.</span><span class="na">getRaster</span><span class="p">().</span><span class="na">getDataBuffer</span><span class="p">()).</span><span class="na">getData</span><span class="p">();</span>
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">arraycopy</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">targetPixels</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="na">length</span><span class="p">);</span>
-</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
-</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">bufImage</span><span class="p">;</span>
-</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="p">}</span>
+<p>ここで <code>toBufferedImage</code> は <code>Mat</code> を <code>BufferedImage</code> に変換するメソッドで、中身は以下のようになっています。</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Image</span><span class="w"> </span><span class="nf">toBufferedImage</span><span class="p">(</span><span class="n">Mat</span><span class="w"> </span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BufferedImage</span><span class="p">.</span><span class="na">TYPE_BYTE_GRAY</span><span class="p">;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="na">channels</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">        </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BufferedImage</span><span class="p">.</span><span class="na">TYPE_3BYTE_BGR</span><span class="p">;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">bufferSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="na">channels</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="na">cols</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="na">rows</span><span class="p">();</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">byte</span><span class="o">[</span><span class="n">bufferSize</span><span class="o">]</span><span class="p">;</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span><span class="n">m</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"> </span><span class="c1">// get all the pixels</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="n">BufferedImage</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BufferedImage</span><span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="na">cols</span><span class="p">(),</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="na">rows</span><span class="p">(),</span><span class="w"> </span><span class="n">type</span><span class="p">);</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">targetPixels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="n">DataBufferByte</span><span class="p">)</span><span class="w"> </span><span class="n">image</span><span class="p">.</span><span class="na">getRaster</span><span class="p">().</span><span class="na">getDataBuffer</span><span class="p">()).</span><span class="na">getData</span><span class="p">();</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">arraycopy</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">targetPixels</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="na">length</span><span class="p">);</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">image</span><span class="p">;</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="p">}</span>
 </span></code></pre></div>
-<p>ここまでのコードを記述すると、シンボルが見つからないというエラーが幾つも出ているかもしれません。
+<p>ここまでのコードを記述すると、シンボルが見つからないというエラーが出ているかもしれません。
 このエラーを解消するためには、コードエディタの好きな場所で右クリックをし、[Fix Imports]（インポートの修正）を行ってください。</p>
 <p><img alt="Fix Imports" src="../img/FixImports.png" /></p>
 <p>するとコードが解析され、以下のように必要な <code>import</code> 文が自動挿入されます。</p>
-<div class="language-java highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.image.BufferedImage</span><span class="p">;</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.image.DataBufferByte</span><span class="p">;</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.ImageIcon</span><span class="p">;</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">org.opencv.core.Core</span><span class="p">;</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">org.opencv.core.Mat</span><span class="p">;</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="kn">import</span><span class="w"> </span><span class="nn">org.opencv.imgcodecs.Imgcodecs</span><span class="p">;</span>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.image.BufferedImage</span><span class="p">;</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.image.DataBufferByte</span><span class="p">;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.ImageIcon</span><span class="p">;</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">org.opencv.core.Core</span><span class="p">;</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">org.opencv.core.Mat</span><span class="p">;</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="kn">import</span><span class="w"> </span><span class="nn">org.opencv.highgui.HighGui</span><span class="p">;</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="kn">import</span><span class="w"> </span><span class="nn">org.opencv.imgcodecs.Imgcodecs</span><span class="p">;</span>
 </span></code></pre></div>
 <p>エラーが解消されたらコードを実行してみましょう。</p>
 <p><img alt="First App" src="../img/FirstApp.png" /></p>
