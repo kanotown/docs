@@ -10,7 +10,7 @@ OpenCV（Open Source Computer Vision Library）は、マシンビジョン、コ
 
 ### OpenCV と Java の関係
 
-Java にバインディングされた OpenCV は、Java Native Interface（JNI）を介して C++の OpenCV ライブラリを呼び出すことにより機能します。Java のバーチャルマシンの上で稼働し、クロスプラットフォームでの開発を容易にします。
+Java にバインディングされた OpenCV は、Java Native Interface（JNI）を介して C++ の OpenCV ライブラリを呼び出すことにより機能します。Java のバーチャルマシンの上で稼働し、クロスプラットフォームでの開発が可能となっています。
 
 ## コンテンツ
 
