@@ -141,7 +141,78 @@ import org.opencv.imgcodecs.Imgcodecs;
 
 ウィンドウが立ち上がり、画像が表示されたら成功です。
 
-このセクションでは、OpenCV を用いて Java で画像を読み込み、表示する方法について学びました。
+## 各種データの変換
+
+前節では、`Mat` オブジェクトを `BufferedImage` に変換する方法を紹介しました。
+その他にも、プログラムを書いているとさまざまな変換が必要になることが考えられます。
+ここでは、幾つかのデータ変換の方法を整理して紹介します。
+
+### 配列から Mat への変換
+
+二次元情報が格納された配列（構造自体は一次元）を `Mat` に変換したい場合は、`Mat` のインスタンスを生成し、`put` メソッドを用いて情報を格納します。以下はコード例です。
+
+```java
+Mat mat = new Mat(rows, cols, type);
+mat.put(row, col, array);
+```
+
+`Mat` のコンストラクタは幾つかの種類がありますが、ここでは行数（rows）、列数（cols）、種類（type）を指定しています。
+行数は画像の高さ、列数は画像の幅に相当する点に注意してください。
+`put` メソッドでは、データを流し込む行と列の開始位置、および配列（array）を渡しています。
+以下は実際のコード例です。
+
+```java
+Mat mat = new Mat(512, 512, CvType.CV_8U);
+mat.put(0, 0, grayData);
+```
+
+この例では、解像度 `512x512`、8 ビットグレースケールの `Mat` オブジェクトを作成し、
+そこに `grayData` という名前の配列（これは別途自分で用意）を格納しています。
+type の例を以下に幾つか示します。
+
+- `CvType.CV_8U` : 8 ビットグレースケール
+- `CvType.CV_8UC3` : 8 ビットカラー
+- `CvType.CV_16U` : 16 ビットグレースケール
+- `CvType.CV_16UC3` : 16 ビットカラー
+- `CvType.CV_32F` : 32 ビットグレースケール（浮動小数点数）
+- `CvType.CV_32FC3` : 32 ビットカラー（浮動小数点数）
+
+### Mat から配列への変換
+
+`Mat` から配列にデータを格納したい場合は、`get` メソッドを使用します。
+以下は、`CvType.CV_32F` の `Mat` オブジェクトを、float の配列に格納するコード例です。
+
+```java
+float[] imgData = new float[dataWidth * dataHeight];
+rotated.get(0, 0, imgData);
+```
+
+### BufferedImage から Mat への変換
+
+`BufferedImage` から `Mat` に変換するには、`BufferedImage` の情報をデータ配列に変換し、`put` メソッドを適用します。
+以下は関数のコード例です。
+
+```java
+public Mat bufferedImageToMat(BufferedImage bi) {
+    Mat mat = new Mat(bi.getHeight(), bi.getWidth(), CvType.CV_8UC3);
+    byte[] data = ((DataBufferByte) bi.getRaster().getDataBuffer()).getData();
+    mat.put(0, 0, data);
+    return mat;
+}
+```
+
+### Mat から BufferedImage への変換
+
+`Mat` から `BufferedImage` に変換する方法は、前述のとおり、`HighGui.toBufferedImage` メソッドを使うのが簡単です。以下はコード例です。
+
+```java
+Mat mat = Imgcodecs.imread("KanoHead.png");
+BufferedImage bi = HighGui.toBufferedImage(mat);
+```
+
+## まとめ
+
+このセクションでは、OpenCV を用いて Java で画像を読み込み、表示・変換する方法について学びました。
 以降のセクションでは、OpenCV による具体的な画像処理の方法について見ていきます。
 
 <br>

@@ -911,6 +911,66 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      各種データの変換
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="各種データの変換">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mat" class="md-nav__link">
+    <span class="md-ellipsis">
+      配列から Mat への変換
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mat_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mat から配列への変換
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bufferedimage-mat" class="md-nav__link">
+    <span class="md-ellipsis">
+      BufferedImage から Mat への変換
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mat-bufferedimage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mat から BufferedImage への変換
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      まとめ
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1332,6 +1392,66 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      各種データの変換
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="各種データの変換">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mat" class="md-nav__link">
+    <span class="md-ellipsis">
+      配列から Mat への変換
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mat_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mat から配列への変換
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bufferedimage-mat" class="md-nav__link">
+    <span class="md-ellipsis">
+      BufferedImage から Mat への変換
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mat-bufferedimage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mat から BufferedImage への変換
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      まとめ
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1448,7 +1568,56 @@
 <p>エラーが解消されたらコードを実行してみましょう。</p>
 <p><img alt="First App" src="../img/FirstApp.png" /></p>
 <p>ウィンドウが立ち上がり、画像が表示されたら成功です。</p>
-<p>このセクションでは、OpenCV を用いて Java で画像を読み込み、表示する方法について学びました。
+<h2 id="_1">各種データの変換</h2>
+<p>前節では、<code>Mat</code> オブジェクトを <code>BufferedImage</code> に変換する方法を紹介しました。
+その他にも、プログラムを書いているとさまざまな変換が必要になることが考えられます。
+ここでは、幾つかのデータ変換の方法を整理して紹介します。</p>
+<h3 id="mat">配列から Mat への変換</h3>
+<p>二次元情報が格納された配列（構造自体は一次元）を <code>Mat</code> に変換したい場合は、<code>Mat</code> のインスタンスを生成し、<code>put</code> メソッドを用いて情報を格納します。以下はコード例です。</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">Mat</span><span class="w"> </span><span class="n">mat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Mat</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span><span class="w"> </span><span class="n">cols</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="p">);</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">mat</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="p">,</span><span class="w"> </span><span class="n">array</span><span class="p">);</span>
+</span></code></pre></div>
+<p><code>Mat</code> のコンストラクタは幾つかの種類がありますが、ここでは行数（rows）、列数（cols）、種類（type）を指定しています。
+行数は画像の高さ、列数は画像の幅に相当する点に注意してください。
+<code>put</code> メソッドでは、データを流し込む行と列の開始位置、および配列（array）を渡しています。
+以下は実際のコード例です。</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">Mat</span><span class="w"> </span><span class="n">mat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Mat</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span><span class="w"> </span><span class="mi">512</span><span class="p">,</span><span class="w"> </span><span class="n">CvType</span><span class="p">.</span><span class="na">CV_8U</span><span class="p">);</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">mat</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">grayData</span><span class="p">);</span>
+</span></code></pre></div>
+<p>この例では、解像度 <code>512x512</code>、8 ビットグレースケールの <code>Mat</code> オブジェクトを作成し、
+そこに <code>grayData</code> という名前の配列（これは別途自分で用意）を格納しています。
+type の例を以下に幾つか示します。</p>
+<ul>
+<li><code>CvType.CV_8U</code> : 8 ビットグレースケール</li>
+<li><code>CvType.CV_8UC3</code> : 8 ビットカラー</li>
+<li><code>CvType.CV_16U</code> : 16 ビットグレースケール</li>
+<li><code>CvType.CV_16UC3</code> : 16 ビットカラー</li>
+<li><code>CvType.CV_32F</code> : 32 ビットグレースケール（浮動小数点数）</li>
+<li><code>CvType.CV_32FC3</code> : 32 ビットカラー（浮動小数点数）</li>
+</ul>
+<h3 id="mat_1">Mat から配列への変換</h3>
+<p><code>Mat</code> から配列にデータを格納したい場合は、<code>get</code> メソッドを使用します。
+以下は、<code>CvType.CV_32F</code> の <code>Mat</code> オブジェクトを、float の配列に格納するコード例です。</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">float</span><span class="o">[]</span><span class="w"> </span><span class="n">imgData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">float</span><span class="o">[</span><span class="n">dataWidth</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dataHeight</span><span class="o">]</span><span class="p">;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">rotated</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">imgData</span><span class="p">);</span>
+</span></code></pre></div>
+<h3 id="bufferedimage-mat">BufferedImage から Mat への変換</h3>
+<p><code>BufferedImage</code> から <code>Mat</code> に変換するには、<code>BufferedImage</code> の情報をデータ配列に変換し、<code>put</code> メソッドを適用します。
+以下は関数のコード例です。</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kd">public</span><span class="w"> </span><span class="n">Mat</span><span class="w"> </span><span class="nf">bufferedImageToMat</span><span class="p">(</span><span class="n">BufferedImage</span><span class="w"> </span><span class="n">bi</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="n">Mat</span><span class="w"> </span><span class="n">mat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Mat</span><span class="p">(</span><span class="n">bi</span><span class="p">.</span><span class="na">getHeight</span><span class="p">(),</span><span class="w"> </span><span class="n">bi</span><span class="p">.</span><span class="na">getWidth</span><span class="p">(),</span><span class="w"> </span><span class="n">CvType</span><span class="p">.</span><span class="na">CV_8UC3</span><span class="p">);</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="n">DataBufferByte</span><span class="p">)</span><span class="w"> </span><span class="n">bi</span><span class="p">.</span><span class="na">getRaster</span><span class="p">().</span><span class="na">getDataBuffer</span><span class="p">()).</span><span class="na">getData</span><span class="p">();</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="n">mat</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">);</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">mat</span><span class="p">;</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="mat-bufferedimage">Mat から BufferedImage への変換</h3>
+<p><code>Mat</code> から <code>BufferedImage</code> に変換する方法は、前述のとおり、<code>HighGui.toBufferedImage</code> メソッドを使うのが簡単です。以下はコード例です。</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">Mat</span><span class="w"> </span><span class="n">mat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Imgcodecs</span><span class="p">.</span><span class="na">imread</span><span class="p">(</span><span class="s">&quot;KanoHead.png&quot;</span><span class="p">);</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">BufferedImage</span><span class="w"> </span><span class="n">bi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HighGui</span><span class="p">.</span><span class="na">toBufferedImage</span><span class="p">(</span><span class="n">mat</span><span class="p">);</span>
+</span></code></pre></div>
+<h2 id="_2">まとめ</h2>
+<p>このセクションでは、OpenCV を用いて Java で画像を読み込み、表示・変換する方法について学びました。
 以降のセクションでは、OpenCV による具体的な画像処理の方法について見ていきます。</p>
 <p><br></p>
 
