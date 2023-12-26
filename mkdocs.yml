@@ -31,7 +31,9 @@ nav:
       - 環境構築: python/environment.md
       - OpenCV: python/opencv/index.md
       - PyQt: python/pyqt/index.md
-  - CT: ct/index.md
+  - CT:
+      - ct/index.md
+      - True IR: ct/trueir.md
 
 theme:
   # language: ja
