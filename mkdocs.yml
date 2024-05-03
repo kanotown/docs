@@ -34,6 +34,10 @@ nav:
   - CT:
       - ct/index.md
       - True IR: ct/trueir.md
+  - Git:
+      - git/index.md
+      - 導入: git/introduction.md
+      - FTP接続: git/ftp.md
 
 theme:
   # language: ja
