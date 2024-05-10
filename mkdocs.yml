@@ -9,7 +9,7 @@ nav:
       - Java 入門: java/introduction/grammar.md
       - GUI 開発:
           - java/gui/index.md
-          - NetBeans 基礎: java/null.md
+          - NetBeans 基礎: java/gui/netbeans.md
       - 画像処理:
           - java/ip/index.md
           - 画像データの入出力: java/ip/imageio.md
@@ -108,4 +108,4 @@ plugins:
       fallback_to_build_date: true
   - search
 
-copyright: 　&copy; 2023 Kano Lab Docs
+copyright: 　&copy; 2024 Kano Lab Docs
