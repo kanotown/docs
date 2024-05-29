@@ -3,6 +3,62 @@ site_name: Kano Lab Docs
 nav:
   - HOME:
       - 本サイトについて: index.md
+  - Web:
+      - web/index.md
+      - ログイン: web/login.md
+      - 新規登録: web/signup.md
+      - 教育システムデザイン:
+          - web/lecture/index.md
+          - 1. HTML の基礎と JavaScript: web/lecture/1.md
+          - 2. グラフィクス: web/lecture/2.md
+          - 3. アニメーション: web/lecture/3.md
+          - 4. 物理シミュレーション: web/lecture/4.md
+          - 5. インタフェース: web/lecture/5.md
+          - 6. 3D グラフィクス: web/lecture/6.md
+      - HTML 入門:
+          - web/html-basics/index.md
+          - 1. HTML とは: web/html-basics/1.md
+          - 2. HTMLの基本構造: web/html-basics/2.md
+          - 3. タグと要素の基本: web/html-basics/3.md
+          - 4. テキストのフォーマット: web/html-basics/4.md
+          - 5. リンクの作成: web/html-basics/5.md
+          - 6. 画像の挿入: web/html-basics/6.md
+          - 7. リストの作成: web/html-basics/7.md
+          - 8. テーブルの作成: web/html-basics/8.md
+          - 9. フォームの作成: web/html-basics/9.md
+          - 10. HTML のセマンティクス: web/html-basics/10.md
+          - 11. HTML のベストプラクティス: web/html-basics/11.md
+          - 12. HTML の検証とデバッグ: web/html-basics/12.md
+      - CSS 入門:
+          - web/css-basics/index.md
+          - 1. CSS の基本概念: web/css-basics/1.md
+          - 2. セレクタとプロパティ: web/css-basics/2.md
+          - 3. テキストのスタイリング: web/css-basics/3.md
+          - 4. ボックスモデル: web/css-basics/4.md
+          - 5. レイアウトの基本: web/css-basics/5.md
+          - 6. 色と背景: web/css-basics/6.md
+          - 7. フォントとタイポグラフィ: web/css-basics/7.md
+          - 8. リストとテーブルのスタイリング: web/css-basics/8.md
+          - 9. レスポンシブデザイン: web/css-basics/9.md
+          - 10. アニメーションとトランジション: web/css-basics/10.md
+          - 11. CSS フレームワークの紹介: web/css-basics/11.md
+      - JavaScript 入門:
+          - web/javascript-basics/index.md
+          - 1. JavaScript の概要: web/javascript-basics/1.md
+          - 2. 基本的な文法: web/javascript-basics/2.md
+          - 3. 変数とデータ型: web/javascript-basics/3.md
+          - 4. 演算子と式: web/javascript-basics/4.md
+          - 5. 制御構文（条件分岐とループ）: web/javascript-basics/5.md
+          - 6. 関数: web/javascript-basics/6.md
+          - 7. 配列とオブジェクト: web/javascript-basics/7.md
+          - 8. DOM 操作: web/javascript-basics/8.md
+          - 9. イベントハンドリング: web/javascript-basics/9.md
+          - 10. 非同期処理（コールバック、プロミス、async/await）: web/javascript-basics/10.md
+          - 11. エラーハンドリング: web/javascript-basics/11.md
+          - 12. モジュールとスコープ: web/javascript-basics/12.md
+          - 13. デバッグとテスト: web/javascript-basics/13.md
+          - 14. ブラウザ API の活用: web/javascript-basics/14.md
+          - 15. JavaScript のベストプラクティス: web/javascript-basics/15.md
   - Java:
       - java/index.md
       - 環境構築: java/introduction/environment.md
@@ -42,6 +98,7 @@ nav:
 theme:
   # language: ja
   name: material
+  custom_dir: overrides
   font:
     text: Noto Sans Japanese
   logo: img/chipmunk.png
