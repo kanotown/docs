@@ -79,25 +79,49 @@ Web 入門用の資料です。
 <a href="https://docs.kano-lab.com/auth/editor" class="md-button md-button--primary">エディタ</a>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    fetch('https://docs.kano-lab.com/auth/wp-json/custom/v1/check-login', {
-          headers: {
-            'Content-Type': 'application/json',
-            'credentials': 'include' // クッキーを含める
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            const statusElement = document.getElementById('login-status');
-            if (data) {
-                statusElement.textContent = 'You are logged in.';
+
+    async function fetchUserInfo() {
+        try{
+            const response = fetch('https://docs.kano-lab.com/auth/editor/check.php', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                // 'credentials': 'include' // クッキーを含める
+                }
+            })
+            if (response.ok) {
+                const data = await response.json();
+                console.log('User info:', data);
+                // 取得したユーザー情報を表示するなどの処理を追加
+                displayUserInfo(data);
             } else {
-                statusElement.textContent = 'You are not logged in.';
+                const errorText = await response.text();
+                console.error('Failed to fetch user info:', response.status, errorText);
             }
-        })
-        .catch(error => console.error('Error:', error));
-});
+        } catch (error) {
+            console.error('Fetch error:', error);
+        }
+    }
+
+    function displayUserInfo(data) {
+        const userInfoDiv = document.getElementById('login-status');
+        if (data.error) {
+            userInfoDiv.textContent = data.error;
+        } else {
+            userInfoDiv.innerHTML = `
+                <p>User ID: ${data.id}</p>
+                <p>Username: ${data.username}</p>
+                <p>Email: ${data.email}</p>
+                <p>First Name: ${data.first_name}</p>
+                <p>Last Name: ${data.last_name}</p>
+                <p>Display Name: ${data.display_name}</p>
+            `;
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        fetchUserInfo();
+    });
 </script>
 
 <div id="login-status">Checking login status...</div>
