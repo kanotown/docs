@@ -23,7 +23,7 @@
 
     const data = await response.json();
     if (data.token) {
-      sessionStorage.setItem("jwt", data.token);
+      localStorage.setItem("jwt", data.token);
       // console.log("Login successful:", data);
       fetchProtectedResource();
     } else {
@@ -44,7 +44,8 @@
 
 <script>
   async function fetchProtectedResource() {
-    const token = sessionStorage.getItem("jwt");
+    const token = localStorage.getItem("jwt");
+    if (!token) return;
     const response = await fetch(
       "https://docs.kano-lab.com/auth/wp-json/protected/v1/resource",
       {
@@ -65,5 +66,11 @@
       console.error("Access denied:", response.status);
     }
   }
-  fetchProtectedResource();
+
+  document.addEventListener('DOMContentLoaded', function() {
+    fetchProtectedResource();
+  });
+  // checkLoginStatus();
+  // fetchProtectedResource();
+
 </script>

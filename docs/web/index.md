@@ -72,8 +72,32 @@ Web 入門用の資料です。
 
 <div id="login-signup" style="text-align: center;">
   <p>各種サイトコンテンツはログイン後に利用可能となります。</p>
-  <a href="/login" class="md-button md-button--primary">ログイン</a>　
-  <a href="/signup" class="md-button md-button--primary">新規登録</a>
+  <a href="https://docs.kano-lab.com/auth/login" class="md-button md-button--primary">ログイン</a>　
+  <a href="https://docs.kano-lab.com/auth/register" class="md-button md-button--primary">新規登録</a>
 </div>
 
-<a href="https://docs.kano.ac/editor" class="md-button md-button--primary">エディタ</a>
+<a href="https://docs.kano-lab.com/auth/editor" class="md-button md-button--primary">エディタ</a>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('https://docs.kano-lab.com/auth/wp-json/custom/v1/check-login', {
+          headers: {
+            'Content-Type': 'application/json',
+            'credentials': 'include' // クッキーを含める
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            const statusElement = document.getElementById('login-status');
+            if (data) {
+                statusElement.textContent = 'You are logged in.';
+            } else {
+                statusElement.textContent = 'You are not logged in.';
+            }
+        })
+        .catch(error => console.error('Error:', error));
+});
+</script>
+
+<div id="login-status">Checking login status...</div>
