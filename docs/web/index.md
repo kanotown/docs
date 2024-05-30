@@ -82,7 +82,7 @@ Web 入門用の資料です。
 
     async function fetchUserInfo() {
         try{
-            const response = fetch('https://docs.kano-lab.com/auth/editor/check.php', {
+            const response = await fetch('https://docs.kano-lab.com/auth/editor/check.php', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
