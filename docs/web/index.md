@@ -70,29 +70,24 @@ Web 入門用の資料です。
 
     **節度あるご利用をお願いいたします。**
 
+<br>
 <div id="login-signup" style="text-align: center;">
   <p>各種サイトコンテンツはログイン後に利用可能となります。</p>
   <a href="https://docs.kano-lab.com/auth/login" class="md-button md-button--primary">ログイン</a>　
   <a href="https://docs.kano-lab.com/auth/register" class="md-button md-button--primary">新規登録</a>
 </div>
 
-<a href="https://docs.kano-lab.com/auth/editor" class="md-button md-button--primary">エディタ</a>
-
 <script>
-
     async function fetchUserInfo() {
         try{
             const response = await fetch('https://docs.kano-lab.com/auth/editor/check.php', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                // 'credentials': 'include' // クッキーを含める
                 }
             })
             if (response.ok) {
                 const data = await response.json();
-                console.log('User info:', data);
-                // 取得したユーザー情報を表示するなどの処理を追加
                 displayUserInfo(data);
             } else {
                 const errorText = await response.text();
@@ -104,18 +99,20 @@ Web 入門用の資料です。
     }
 
     function displayUserInfo(data) {
-        const userInfoDiv = document.getElementById('login-status');
+        const userInfoDiv = document.getElementById('login-signup');
         if (data.error) {
-            userInfoDiv.textContent = data.error;
         } else {
             userInfoDiv.innerHTML = `
-                <p>User ID: ${data.id}</p>
-                <p>Username: ${data.username}</p>
-                <p>Email: ${data.email}</p>
-                <p>First Name: ${data.first_name}</p>
-                <p>Last Name: ${data.last_name}</p>
-                <p>Display Name: ${data.display_name}</p>
+              <p><a href="https://docs.kano-lab.com/auth/editor" class="md-button md-button--primary">Kano Code</a></p>
+              <p>Logged in as <strong>${data.email}</strong></p>
+
+              <p>
+              <a href="https://docs.kano-lab.com/auth/account" class="md-button md-button--secondary">アカウント情報</a>　
+  <a href="https://docs.kano-lab.com/auth/logout" class="md-button md-button--secondary">ログアウト</a>
+              </p>
             `;
+            // login-signup
+            document.getElementById('auth-status').innerHTML = 'Logged in as ' + data.email;
         }
     }
 
@@ -123,5 +120,3 @@ Web 入門用の資料です。
         fetchUserInfo();
     });
 </script>
-
-<div id="login-status">Checking login status...</div>

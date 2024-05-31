@@ -5,7 +5,8 @@ nav:
       - 本サイトについて: index.md
   - Web:
       - web/index.md
-      # - ログイン: https://docs.kano-lab.com/auth/login/
+      - ログイン: https://docs.kano-lab.com/auth/login/
+      - Kano Code: https://docs.kano-lab.com/auth/editor/
       # - 新規登録: https://docs.kano-lab.com/auth/register/
       - 教育システムデザイン:
           - web/lecture/index.md
