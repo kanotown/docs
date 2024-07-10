@@ -13,9 +13,12 @@ nav:
           - 1. HTML の基礎と JavaScript: web/lecture/1.md
           - 2. グラフィクス: web/lecture/2.md
           - 3. アニメーション: web/lecture/3.md
-          - 4. 物理シミュレーション: web/lecture/4.md
-          - 5. インタフェース: web/lecture/5.md
-          - 6. 3D グラフィクス: web/lecture/6.md
+          - 4. 物理シミュレーションの基礎: web/lecture/4.md
+          - 5. さまざまな物理シミュレーション: web/lecture/5.md
+          - 6. ユーザインタフェース: web/lecture/6.md
+          - 7. マウス操作とキー操作: web/lecture/7.md
+          - 8. 3D グラフィクス: web/lecture/8.md
+          - 9. ライブラリの活用: web/lecture/9.md
       - HTML 入門:
           - web/html-basics/index.md
           - 1. HTML とは: web/html-basics/1.md
@@ -82,12 +85,17 @@ nav:
           - モルフォロジー演算: java/opencv/morphology.md
           - セグメンテーション: java/opencv/segmentation.md
           - 応用: java/opencv/advanced.md
-
   - Python:
       - python/index.md
       - 環境構築: python/environment.md
       - OpenCV: python/opencv/index.md
       - PyQt: python/pyqt/index.md
+  - AR:
+      - ar/index.md
+      - VisionLib:
+          - ar/visionlib/index.md
+          - VisionLib の導入: ar/visionlib/introduction.md
+          - モデルトラッキング: ar/visionlib/model.md
   - CT:
       - ct/index.md
       - True IR: ct/trueir.md
@@ -95,6 +103,14 @@ nav:
       - git/index.md
       - 導入: git/introduction.md
       - FTP接続: git/ftp.md
+  - Lecture:
+      - lecture/index.md
+      - AI・DS演習:
+          - lecture/aids/index.md
+          - 第11回: lecture/aids/11.md
+          - 第12回: lecture/aids/12.md
+          - 第13回: lecture/aids/13.md
+          - データセット: lecture/aids/datasets.md
 
 theme:
   # language: ja
@@ -150,6 +166,9 @@ markdown_extensions:
   - pymdownx.superfences
   - admonition
   - pymdownx.details
+  - pymdownx.arithmatex:
+      generic: true
+  - tables
 
 extra:
   generator: false
@@ -160,10 +179,18 @@ extra:
 extra_css:
   - css/extra.css
 
+extra_javascript:
+  # - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
 plugins:
   - git-revision-date-localized:
       enable_creation_date: true
       fallback_to_build_date: true
   - search
+
+cache:
+  enabled: true
 
 copyright: 　&copy; 2024 Kano Lab Docs
