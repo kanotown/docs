@@ -101,7 +101,8 @@ nav:
       - True IR: ct/trueir.md
   - Git:
       - git/index.md
-      - 導入: git/introduction.md
+      - Gitea: git/gitea.md
+      - GitHub: git/introduction.md
       - FTP接続: git/ftp.md
   - Lecture:
       - lecture/index.md
