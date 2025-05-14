@@ -8,9 +8,6 @@
 - 研究室サイト  
   [https://kano-lab.com/](https://kano-lab.com/)
 
-- メンバ専用ページ  
-  [https://info.kano-lab.com/](https://info.kano-lab.com/)
-
 - Kano's page  
   [https://kano.ac/](https://kano.ac/)
 
