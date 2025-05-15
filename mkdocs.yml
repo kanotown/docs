@@ -190,7 +190,4 @@ plugins:
       fallback_to_build_date: true
   - search
 
-cache:
-  enabled: true
-
-copyright: 　&copy; 2024 Kano Lab Docs
+copyright: 　&copy; 2023-2025 Kano Lab Docs
