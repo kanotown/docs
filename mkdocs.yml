@@ -3,6 +3,8 @@ site_name: Kano Lab Docs
 nav:
   - HOME:
       - 本サイトについて: index.md
+  - Unity:
+      - unity/index.md
   - Web:
       - web/index.md
       - ログイン: https://docs.kano-lab.com/auth/login/
