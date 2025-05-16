@@ -1,22 +1,36 @@
+name: 🚀 Deploy MkDocs to GitHub Pages
+
 on:
-  workflow_dispatch:
   push:
     branches:
       - main
-name: 🚀 Deploy website on push
+  workflow_dispatch:
+
 jobs:
-  web-deploy:
-    name: 🎉 Deploy
+  build-deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: 🚚 Get latest code
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./site/
-          server-dir: ./
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Build site
+        run: mkdocs build
+
+      - name: Create CNAME file
+        run: echo "docs.kano-lab.com" > ./site/CNAME
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
