@@ -1,4 +1,6 @@
 site_name: Kano Lab Docs
+repo_name: Kano Lab Docs
+repo_url: https://github.com/kanotown/docs
 
 nav:
   - HOME:
