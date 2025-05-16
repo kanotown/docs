@@ -1,2 +1,4 @@
 # Lano Lab Docs
 加納研究室の資料置場
+
+docs.kano-lab.com
