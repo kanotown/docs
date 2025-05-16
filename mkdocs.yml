@@ -7,7 +7,6 @@ nav:
       - web/index.md
       - ログイン: https://docs.kano-lab.com/auth/login/
       - Kano Code: https://docs.kano-lab.com/auth/editor/
-      # - 新規登録: https://docs.kano-lab.com/auth/register/
       - 教育システムデザイン:
           - web/lecture/index.md
           - 1. HTML の基礎と JavaScript: web/lecture/1.md
