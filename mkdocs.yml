@@ -87,11 +87,11 @@ nav:
           - モルフォロジー演算: java/opencv/morphology.md
           - セグメンテーション: java/opencv/segmentation.md
           - 応用: java/opencv/advanced.md
-  - Python:
-      - python/index.md
-      - 環境構築: python/environment.md
-      - OpenCV: python/opencv/index.md
-      - PyQt: python/pyqt/index.md
+  # - Python:
+  #     - python/index.md
+  #     - 環境構築: python/environment.md
+  #     - OpenCV: python/opencv/index.md
+  #     - PyQt: python/pyqt/index.md
   - AR:
       - ar/index.md
       - VisionLib:
